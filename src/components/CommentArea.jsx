@@ -26,15 +26,23 @@ class CommentArea extends Component {
     }
   };
 
-  componentDidMount() {
+  componentDidUpdate() {
     this.fetchingComments();
   }
 
   render() {
+    console.log("props in comAre", this.props);
     return (
       <>
-        <CommentsList arrayOfComments={this.state.arrayOfComments} />
-        <AddComment bookId={this.props.bookId} />
+        <h1>hello</h1>
+        {this.props.bookId ? (
+          <>
+            <CommentsList arrayOfComments={this.state.arrayOfComments} />
+            <AddComment bookId={this.props.bookId} />
+          </>
+        ) : (
+          <p>select a book to see comments</p>
+        )}
       </>
     );
   }
