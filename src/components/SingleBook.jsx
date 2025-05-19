@@ -29,7 +29,7 @@ class SingleBook extends Component {
           <Card.Text className="fs-6">
             Category <Badge bg="success">{this.props.book.category}</Badge>
           </Card.Text>
-          {/* <CommentArea /> */}
+          {/* <CommentArea bookId={this.props.book.asin} /> */}
           {/* {this.state.selected && <CommentArea bookId={this.props.book.asin} />} */}
         </Card.Body>
       </Card>

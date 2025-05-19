@@ -38,18 +38,18 @@ class BookList extends Component {
               </Form.Group>
             </Form>
           </Col>
-          {this.props.selectedBookList
-            .filter((books) => books.title.toLowerCase().includes(this.state.search.toLowerCase()))
-            .map((book) => (
-              <Row key={book.asin} className="justify-content-center align-items-center">
-                <Col xs={6} className="mb-3">
-                  <SingleBook book={book} selected={book.asin === this.state.selectedBook} handleSelected={this.handleSelected} />
-                </Col>
-                <Col xs={6}>
-                  <CommentArea bookId={book.asin === this.state.selectedBook ? this.state.selectedBook : null} />
-                </Col>
-              </Row>
-            ))}
+          <Col xs={6} className="mb-3">
+            <Row>
+              {this.props.selectedBookList
+                .filter((books) => books.title.toLowerCase().includes(this.state.search.toLowerCase()))
+                .map((book) => (
+                  <SingleBook key={book.asin} book={book} selected={book.asin === this.state.selectedBook} handleSelected={this.handleSelected} />
+                ))}
+            </Row>
+          </Col>
+          <Col xs={6}>
+            <CommentArea bookId={this.state.selectedBook} />
+          </Col>
         </Row>
       </Container>
     );

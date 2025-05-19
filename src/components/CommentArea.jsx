@@ -8,6 +8,8 @@ class CommentArea extends Component {
   };
 
   fetchingComments = async () => {
+    console.log("fetching");
+
     try {
       const response = await fetch(`https://striveschool-api.herokuapp.com/api/comments/${this.props.bookId}`, {
         headers: {
@@ -26,23 +28,18 @@ class CommentArea extends Component {
     }
   };
 
-  componentDidUpdate() {
-    this.fetchingComments();
+  componentDidUpdate(prevProps) {
+    if (prevProps.bookId !== this.props.bookId) {
+      this.fetchingComments();
+    }
   }
-
   render() {
-    console.log("props in comAre", this.props);
+    console.log(this.props.bookId);
+
     return (
       <>
-        <h1>hello</h1>
-        {this.props.bookId ? (
-          <>
-            <CommentsList arrayOfComments={this.state.arrayOfComments} />
-            <AddComment bookId={this.props.bookId} />
-          </>
-        ) : (
-          <p>select a book to see comments</p>
-        )}
+        <CommentsList arrayOfComments={this.state.arrayOfComments} />
+        <AddComment bookId={this.props.bookId} />
       </>
     );
   }
